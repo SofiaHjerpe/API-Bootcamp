@@ -1,5 +1,3 @@
-
-
 const bookUrl = "https://majazocom.github.io/Data/books.json";
 const bookUl = document.getElementById("books");
 const bookList = document.createDocumentFragment();
@@ -12,15 +10,14 @@ fetch(bookUrl)
 fetch(bookUrl)
 .then((response) => response.json())
 .then((data) => {
-    data.map((book) =>{
+  let books = data;
+    books.map((book) =>{
       let li = document.createElement("li");
       let name = document.createElement("h2");
 
       name.innerHTML = `${book.title}`;
       book.pages < 501 ? li.appendChild(name) && bookList.appendChild(li) : null;
-
     })
     bookUl.appendChild(bookList)
-
 }).catch((error) => console.error("Error:", error))
 

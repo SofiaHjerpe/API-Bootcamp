@@ -2,7 +2,6 @@ const dul = document.getElementById("dogs");
 const dlist = document.createDocumentFragment();
 const dogUrl = "https://majazocom.github.io/Data/dogs.json";
 
-// request all the dogs with fetch from the API
 fetch(dogUrl)
   .then((response) => response.json())
   .then((data) => console.log(data))

@@ -6,15 +6,19 @@ const visitorWAllergiesList = document.createDocumentFragment();
 
 fetch(fetchUrl)
   .then((response) => response.json())
-  .then((data) => console.log(data));
+  .then((data) => console.log(data))
+  .catch((error) => console.error("Error:", error))
 
 fetch(fetchUrl)
   .then((response) => response.json())
   .then((data) => {
-    data.map((visitor) => {
+    let visitors = data
+    visitors.map((visitor) => {
       let li = document.createElement("li");
       let name = document.createElement("h2");
+
       name.innerHTML = `${visitor.name}`;
+
       visitor.attending === true ? li.appendChild(name) && visitorList.appendChild(li) : null;
     });
     visitorUl.appendChild(visitorList);
@@ -24,14 +28,18 @@ fetch(fetchUrl)
 fetch(fetchUrl)
   .then((response) => response.json())
   .then((data) => {
-    data.map((visitorWAllergies) => {
+    let visitors = data
+    visitors.map((visitorWAllergies) => {
       let li = document.createElement("li");
       let name = document.createElement("h2");
+
+
       name.innerHTML = `${visitorWAllergies.name}`;
+
       visitorWAllergies.attending === true && visitorWAllergies.allergies.length != 0
         ? li.appendChild(name) && visitorWAllergiesList.appendChild(li)
         : null;
     });
     visitorsWithAlergies.appendChild(visitorWAllergiesList);
   })
-  .catch((error) => console.error("E:", error));
+  .catch((error) => console.error("Error:", error));
